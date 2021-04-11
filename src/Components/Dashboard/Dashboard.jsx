@@ -74,6 +74,9 @@ export const Dashboard = (props) => {
     history.push(`${url}/${id}`);
   };
 
+  const handlePost = () => {
+    history.push("/addMovie");
+  };
   const handleEdit = (id) => {};
 
   console.log(movies);
@@ -88,6 +91,9 @@ export const Dashboard = (props) => {
             src="https://cdn57.androidauthority.net/wp-content/uploads/2019/06/Tubi-best-movie-apps-for-Android.jpg"
           />
         </div>
+        <Button color="secondary" variant="contained" onClick={handlePost}>
+          Add any Movie
+        </Button>
         <TableContainer component={Paper}>
           <Table className={classes.table}>
             <TableHead>

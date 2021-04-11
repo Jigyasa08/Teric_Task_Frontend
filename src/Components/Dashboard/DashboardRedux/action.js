@@ -106,12 +106,18 @@ export const movieDataPostFailure = () => {
   };
 };
 
-export const postMovieData = () => (dispatch) => {
+export const postMovieData = ({ avatar, name, genre, year }) => (dispatch) => {
   dispatch(movieDataPostRequest());
 
   axios({
     method: "POST",
     url: `https://teric-movie-api.herokuapp.com/movie/`,
+    data: {
+      avatar,
+      name,
+      genre,
+      year,
+    },
   })
     .then((res) => {
       dispatch(movieDataPostSuccess(res.data));
