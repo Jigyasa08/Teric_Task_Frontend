@@ -5,6 +5,7 @@ import { Register } from "../Components/Register/Register";
 import { useSelector } from "react-redux";
 import { Dashboard } from "../Components/Dashboard/Dashboard";
 import { AddMovie } from "../Components/AddMovie";
+import { EditMovie } from "../Components/EditMovie";
 
 function Routes() {
   const isAuth = useSelector((state) => state.auth.isAuth);
@@ -18,6 +19,11 @@ function Routes() {
           exact
           path="/addMovie"
           render={(props) => <AddMovie {...props} />}
+        />
+        <Route
+          exact
+          path="/editMovie/:id"
+          render={(props) => <EditMovie {...props} />}
         />
         {isAuth ? (
           <Route

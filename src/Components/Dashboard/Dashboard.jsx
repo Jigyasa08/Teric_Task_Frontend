@@ -60,11 +60,9 @@ export const Dashboard = (props) => {
   const movies = useSelector((state) => state.movie.moviesData);
   const isLoading = useSelector((state) => state.movie.isLoading);
   const isError = useSelector((state) => state.movie.isError);
-
   const handleDelete = (id) => {
     dispatch(deleteMovieData(id));
   };
-
   useEffect(() => {
     dispatch(getMovieData());
   }, []);
@@ -77,7 +75,9 @@ export const Dashboard = (props) => {
   const handlePost = () => {
     history.push("/addMovie");
   };
-  const handleEdit = (id) => {};
+  const handleEdit = (id) => {
+    history.push(`/editMovie/${id}`);
+  };
 
   console.log(movies);
   return isAuth ? (
