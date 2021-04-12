@@ -26,6 +26,7 @@ import {
   Typography,
   Paper,
 } from "@material-ui/core";
+import { Pagination } from "../Pagination";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -60,13 +61,18 @@ export const Dashboard = (props) => {
   const movies = useSelector((state) => state.movie.moviesData);
   const isLoading = useSelector((state) => state.movie.isLoading);
   const isError = useSelector((state) => state.movie.isError);
+
+  const [currentPage, setCurrentpage] = useState(1);
+  const perPage = 10;
+  const totalPages = Math.ceil(movies.length / perPage);
+
   const handleDelete = (id) => {
     dispatch(deleteMovieData(id));
     dispatch(getMovieData());
   };
   useEffect(() => {
     dispatch(getMovieData());
-  }, []);
+  }, [currentPage]);
 
   const handleClick = (id) => {
     const { url } = props.match;
@@ -92,11 +98,28 @@ export const Dashboard = (props) => {
             src="https://cdn57.androidauthority.net/wp-content/uploads/2019/06/Tubi-best-movie-apps-for-Android.jpg"
           />
         </div>
-        <div style={{ padding: "10px" }}>
-          <Button color="secondary" variant="contained" onClick={handlePost}>
-            Add any Movie
-          </Button>
+        <div
+          style={{
+            padding: "10px",
+            backgroundColor: "gainsboro",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ marginLeft: "40px" }}>
+            <Button color="secondary" variant="contained" onClick={handlePost}>
+              Add any Movie
+            </Button>
+          </div>
+          <div>
+            <Pagination
+              handlePage={(page) => setCurrentpage(page)}
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          </div>
         </div>
+
         <TableContainer component={Paper}>
           <Table className={classes.table}>
             <TableHead>
@@ -111,25 +134,31 @@ export const Dashboard = (props) => {
             </TableHead>
             <TableBody>
               {movies &&
-                movies.map((row) => (
-                  <StyledTableRow key={row._id}>
-                    <StyledTableCell onClick={() => handleClick(row._id)}>
-                      <img src={row.avatar} width="200px" />
-                    </StyledTableCell>
-                    <StyledTableCell onClick={() => handleClick(row._id)}>
-                      {row.name}
-                    </StyledTableCell>
-                    <StyledTableCell>{row.year}</StyledTableCell>
-                    <StyledTableCell>{row.genre}</StyledTableCell>
+                movies
+                  .filter(
+                    (_, index) =>
+                      index >= (currentPage - 1) * perPage &&
+                      index < currentPage * perPage
+                  )
+                  .map((row) => (
+                    <StyledTableRow key={row._id}>
+                      <StyledTableCell onClick={() => handleClick(row._id)}>
+                        <img src={row.avatar} width="200px" />
+                      </StyledTableCell>
+                      <StyledTableCell onClick={() => handleClick(row._id)}>
+                        {row.name}
+                      </StyledTableCell>
+                      <StyledTableCell>{row.year}</StyledTableCell>
+                      <StyledTableCell>{row.genre}</StyledTableCell>
 
-                    <StyledTableCell onClick={() => handleEdit(row._id)}>
-                      Edit
-                    </StyledTableCell>
-                    <StyledTableCell onClick={() => handleDelete(row._id)}>
-                      Delete
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
+                      <StyledTableCell onClick={() => handleEdit(row._id)}>
+                        Edit
+                      </StyledTableCell>
+                      <StyledTableCell onClick={() => handleDelete(row._id)}>
+                        Delete
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
             </TableBody>
           </Table>
         </TableContainer>
