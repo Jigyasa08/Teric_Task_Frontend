@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginOperatorData } from "./LoginRedux/action";
+import { loginUserData } from "./LoginRedux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { Button, TextField, Paper } from "@material-ui/core";
@@ -14,7 +14,7 @@ export const Login = () => {
   const isError = useSelector((state) => state.auth.isError);
 
   const handleLogin = () => {
-    dispatch(loginOperatorData({ phone, password }));
+    dispatch(loginUserData({ phone, password }));
   };
 
   console.log(isAuth);

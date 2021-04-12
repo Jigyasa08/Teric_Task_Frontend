@@ -119,50 +119,87 @@ export const Dashboard = (props) => {
             />
           </div>
         </div>
+        <div>
+          <TableContainer component={Paper}>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Poster</StyledTableCell>
+                  <StyledTableCell>Movie Name</StyledTableCell>
+                  <StyledTableCell>Year of release</StyledTableCell>
+                  <StyledTableCell>Genre</StyledTableCell>
+                  <StyledTableCell>Edit</StyledTableCell>
+                  <StyledTableCell>Delete</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {movies &&
+                  movies
+                    .filter(
+                      (_, index) =>
+                        index >= (currentPage - 1) * perPage &&
+                        index < currentPage * perPage
+                    )
+                    .map((row) => (
+                      <StyledTableRow key={row._id}>
+                        <StyledTableCell onClick={() => handleClick(row._id)}>
+                          <img src={row.avatar} width="200px" />
+                        </StyledTableCell>
+                        <StyledTableCell
+                          style={{
+                            fontFamily: "cursive",
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                          onClick={() => handleClick(row._id)}
+                        >
+                          {row.name}
+                        </StyledTableCell>
+                        <StyledTableCell
+                          style={{
+                            fontFamily: "cursive",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {row.year}
+                        </StyledTableCell>
+                        <StyledTableCell
+                          style={{
+                            fontFamily: "cursive",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {row.genre}
+                        </StyledTableCell>
 
-        <TableContainer component={Paper}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Poster</StyledTableCell>
-                <StyledTableCell>Movie Name</StyledTableCell>
-                <StyledTableCell>Year of release</StyledTableCell>
-                <StyledTableCell>Genre</StyledTableCell>
-                <StyledTableCell>Edit</StyledTableCell>
-                <StyledTableCell>Delete</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {movies &&
-                movies
-                  .filter(
-                    (_, index) =>
-                      index >= (currentPage - 1) * perPage &&
-                      index < currentPage * perPage
-                  )
-                  .map((row) => (
-                    <StyledTableRow key={row._id}>
-                      <StyledTableCell onClick={() => handleClick(row._id)}>
-                        <img src={row.avatar} width="200px" />
-                      </StyledTableCell>
-                      <StyledTableCell onClick={() => handleClick(row._id)}>
-                        {row.name}
-                      </StyledTableCell>
-                      <StyledTableCell>{row.year}</StyledTableCell>
-                      <StyledTableCell>{row.genre}</StyledTableCell>
-
-                      <StyledTableCell onClick={() => handleEdit(row._id)}>
-                        Edit
-                      </StyledTableCell>
-                      <StyledTableCell onClick={() => handleDelete(row._id)}>
-                        Delete
-                      </StyledTableCell>
-                    </StyledTableRow>
-                  ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-
+                        <StyledTableCell onClick={() => handleEdit(row._id)}>
+                          <Button
+                            style={{
+                              fontFamily: "cursive",
+                              fontSize: "16px",
+                            }}
+                            variant="outlined"
+                          >
+                            Edit
+                          </Button>
+                        </StyledTableCell>
+                        <StyledTableCell onClick={() => handleDelete(row._id)}>
+                          <Button
+                            style={{
+                              fontFamily: "cursive",
+                              fontSize: "16px",
+                            }}
+                            variant="outlined"
+                          >
+                            Delete
+                          </Button>
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
         {isError && <h5>Oops, Something went wrong!</h5>}
       </>
     )
