@@ -146,12 +146,13 @@ export const movieDataEditFailure = () => {
   };
 };
 
-export const editMovieData = (id) => (dispatch) => {
+export const editMovieData = (id, payload) => (dispatch) => {
   dispatch(movieDataEditRequest());
 
   axios({
     method: "PUT",
     url: `https://teric-movie-api.herokuapp.com/movie/${id}`,
+    data: payload,
   })
     .then((res) => {
       dispatch(movieDataEditSuccess(res.data));

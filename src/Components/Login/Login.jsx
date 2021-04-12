@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loginOperatorData } from "./LoginRedux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Paper } from "@material-ui/core";
 
 export const Login = () => {
   const [phone, setPhone] = useState("");
@@ -21,7 +21,15 @@ export const Login = () => {
   return isLoading ? (
     <h4>Loading...</h4>
   ) : (
-    <div>
+    <Paper
+      elevation={5}
+      style={{
+        maxWidth: "900px",
+        margin: "auto",
+        padding: "30px",
+        marginTop: "100px",
+      }}
+    >
       <br />
       <br />
       <TextField
@@ -53,6 +61,6 @@ export const Login = () => {
       )}
 
       {isError && <h5>Login Error, Please try again</h5>}
-    </div>
+    </Paper>
   );
 };

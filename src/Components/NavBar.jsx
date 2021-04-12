@@ -4,12 +4,8 @@ import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   return (
-    <div>
-      <AppBar
-        position="fixed"
-        color="secondary"
-        //   style={{ backgroundColor: "red" }}
-      >
+    <div style={{ marginBottom: "75px" }}>
+      <AppBar position="fixed" color="secondary">
         <div
           style={{
             display: "flex",

@@ -25,7 +25,15 @@ export const Register = () => {
   return isLoading ? (
     <h4>Loading...</h4>
   ) : (
-    <>
+    <Paper
+      elevation={5}
+      style={{
+        maxWidth: "900px",
+        margin: "auto",
+        padding: "30px",
+        marginTop: "100px",
+      }}
+    >
       <TextField
         variant="outlined"
         label="Enter Phone number"
@@ -60,6 +68,6 @@ export const Register = () => {
         </>
       )}
       {isError && <h5>User already exists, Go to Login</h5>}
-    </>
+    </Paper>
   );
 };

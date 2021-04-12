@@ -62,6 +62,7 @@ export const Dashboard = (props) => {
   const isError = useSelector((state) => state.movie.isError);
   const handleDelete = (id) => {
     dispatch(deleteMovieData(id));
+    dispatch(getMovieData());
   };
   useEffect(() => {
     dispatch(getMovieData());
@@ -91,9 +92,11 @@ export const Dashboard = (props) => {
             src="https://cdn57.androidauthority.net/wp-content/uploads/2019/06/Tubi-best-movie-apps-for-Android.jpg"
           />
         </div>
-        <Button color="secondary" variant="contained" onClick={handlePost}>
-          Add any Movie
-        </Button>
+        <div style={{ padding: "10px" }}>
+          <Button color="secondary" variant="contained" onClick={handlePost}>
+            Add any Movie
+          </Button>
+        </div>
         <TableContainer component={Paper}>
           <Table className={classes.table}>
             <TableHead>
