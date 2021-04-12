@@ -28,7 +28,6 @@ export const EditMovie = (props) => {
   const item = useSelector((state) => state.movie.movie);
 
   const [movie, setMovie] = useState(item);
-
   console.log(movie);
   const handleSubmit = (e) => {
     e.preventDefault();

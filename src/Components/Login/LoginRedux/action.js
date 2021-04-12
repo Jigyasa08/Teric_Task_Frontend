@@ -27,7 +27,7 @@ export const loginUserData = ({ phone, password }) => (dispatch) => {
   } else {
     axios({
       method: "POST",
-      url: "https://teric-auth-api.herokuapp.com/account/login",
+      url: "https://teric-api.herokuapp.com/account/login",
       data: {
         phone,
         password,

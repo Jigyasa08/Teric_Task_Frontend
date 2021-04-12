@@ -43,7 +43,7 @@ export const getMovie = (id) => (dispatch) => {
 
   axios({
     method: "GET",
-    url: `https://teric-movie-api.herokuapp.com/movie/${id}`,
+    url: `https://teric-api.herokuapp.com/movie/${id}`,
   })
     .then((res) => {
       dispatch(movieGetSuccess(res.data));
@@ -77,7 +77,7 @@ export const getMovieData = () => (dispatch) => {
 
   axios({
     method: "GET",
-    url: `https://teric-movie-api.herokuapp.com/movie/`,
+    url: `https://teric-api.herokuapp.com/movie/`,
   })
     .then((res) => {
       dispatch(movieDataGetSuccess(res.data));
@@ -111,7 +111,7 @@ export const postMovieData = ({ avatar, name, genre, year }) => (dispatch) => {
 
   axios({
     method: "POST",
-    url: `https://teric-movie-api.herokuapp.com/movie/`,
+    url: `https://teric-api.herokuapp.com/movie/`,
     data: {
       avatar,
       name,
@@ -151,7 +151,7 @@ export const editMovieData = (id, payload) => (dispatch) => {
 
   axios({
     method: "PUT",
-    url: `https://teric-movie-api.herokuapp.com/movie/${id}`,
+    url: `https://teric-api.herokuapp.com/movie/${id}`,
     data: payload,
   })
     .then((res) => {
@@ -186,7 +186,7 @@ export const deleteMovieData = (id) => (dispatch) => {
 
   axios({
     method: "DELETE",
-    url: `https://teric-movie-api.herokuapp.com/movie/${id}`,
+    url: `https://teric-api.herokuapp.com/movie/${id}`,
   })
     .then((res) => {
       dispatch(movieDataDeleteSuccess(res.data));

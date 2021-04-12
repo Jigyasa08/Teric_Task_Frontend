@@ -30,7 +30,7 @@ export const registerUser = (userDetails) => (dispatch) => {
   console.log(userDetails);
   const config = {
     method: "POST",
-    url: "https://teric-auth-api.herokuapp.com/account/register",
+    url: "https://teric-api.herokuapp.com/account/register",
     data: userDetails,
     headers: { "Content-Type": "application/json" },
   };
